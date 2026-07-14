@@ -19,7 +19,7 @@ async function init() {
     });
     mapElement.append(marker);
     const marker2 = new AdvancedMarkerElement({
-        position: { lat: 43.0910415, lng: 140.3457667 },
+        position: { lat: 44.0910415, lng: 141.3457667 },
     });
     mapElement.append(marker2);
 }
