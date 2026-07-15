@@ -28,6 +28,7 @@ async function init() {
                     position:{43.064740, 141.346918},
                     ];
     for (let i = 0; posTbl.length > i; ++i) {
+        console.log(position[i]);
         mapElement.append(new AdvancedMarkerElement({position[i]});
     }
         
