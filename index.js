@@ -21,7 +21,7 @@ async function init() {
         position: { lat: 43.07279381676491, lng: 140.34222381221747 },
     });
     mapElement.append(marker);
-    mapElement.append(marker2);
+//    mapElement.append(marker2);
 }
 
 void init();
