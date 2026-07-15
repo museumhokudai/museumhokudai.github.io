@@ -20,8 +20,8 @@ async function init() {
     const marker2 = new AdvancedMarkerElement({
         position: { lat: 43.07279381676491, lng: 140.34222381221747 },
     });
-    mapElement.append(marker);
     mapElement.append(marker2);
+    mapElement.append(marker);
 }
 
 void init();
