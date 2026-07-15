@@ -11,6 +11,7 @@ async function init() {
     // Request needed libraries.
     const [{ AdvancedMarkerElement }] = await Promise.all([
         google.maps.importLibrary('marker'),
+        google.maps.importLibrary('marker2'),
         google.maps.importLibrary('maps'),
     ]);
 
