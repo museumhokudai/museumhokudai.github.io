@@ -29,7 +29,7 @@ async function init() {
                     ];
     for (let i = 0; posTbl.length > i; ++i) {
         console.log(posTbl[i]);
-        mapElement.append(new AdvancedMarkerElement(posTbl[i]);
+        mapElement.append(new AdvancedMarkerElement(posTbl[i]));
     }
         
 }
