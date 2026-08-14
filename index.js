@@ -7,12 +7,29 @@
 
 const mapElement = document.querySelector('gmp-map');
 
+async function readStream(inFile) {
+    console.log("readStream come");
+    const fs = require("fs");
+    const server = require("http").createServer();
+    server.on("request", (req, res) => {
+        const readable = fs.createReadStream(inFile);
+        readable.pipe(res);
+    console.log(readable);
+});
+
+server.listen(8000, "127.0.0.1", () => {
+  console.log("Listening...");
+});
+}
+
 async function init() {
     // Request needed libraries.
     const [{ AdvancedMarkerElement }] = await Promise.all([
         google.maps.importLibrary('marker'),
         google.maps.importLibrary('maps'),
     ]);
+
+    readStream("test-file.txt");
 
     const marker = new AdvancedMarkerElement({
         position: { lat: 43.07279381676491, lng: 141.34222381221747 },
