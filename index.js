@@ -7,8 +7,8 @@
 
 const mapElement = document.querySelector('gmp-map');
 
-async function readFile(inFile) {
-};
+//async function readFile(inFile) {
+//};
 
 async function init() {
     // Request needed libraries.
