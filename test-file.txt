@@ -1,1 +1,4 @@
-This is test-file.txt.
+{
+"ID":"This is test-file.txt.",
+"PW":"noneed",
+}
