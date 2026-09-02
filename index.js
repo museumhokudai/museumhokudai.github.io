@@ -31,7 +31,7 @@ async function init() {
             console.log(resjson.ary);
             for (let i = 0; resjson.ary.length > i; ++i) {
                 console.log(resjson.ary[i]);
-                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
+//                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
         } else {
             console.log("not ok");
