@@ -22,13 +22,12 @@ async function init() {
                 google.maps.importLibrary('maps'),
             ]);
 
-            console.log(res.ary);
-            /*
-            for (let i = 0; res.ary.length > i; ++i) {
-                console.log(res.ary[i]);
-                mapElement.append(new AdvancedMarkerElement(res.ary[i]));
+            resjson=await res.json();
+            console.log(resjson.ary);
+            for (let i = 0; resjson.ary.length > i; ++i) {
+                console.log(resjson.ary[i]);
+                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
-            */
         } else {
             console.log("not ok");
         }
