@@ -17,10 +17,12 @@ async function init() {
         const res=await fetch(fname);
         if (res.ok) {
             // Request needed libraries.
+            /*
             const [{ AdvancedMarkerElement }] = await Promise.all([
                 google.maps.importLibrary('marker'),
                 google.maps.importLibrary('maps'),
             ]);
+            */
 
             resjson=await res.json();
             console.log(resjson.ary);
