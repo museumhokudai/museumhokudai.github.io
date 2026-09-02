@@ -11,14 +11,46 @@ const mapElement = document.querySelector('gmp-map');
 //};
 
 async function init() {
-    // Request needed libraries.
-    const [{ AdvancedMarkerElement }] = await Promise.all([
-        google.maps.importLibrary('marker'),
-        google.maps.importLibrary('maps'),
-    ]);
+    const fname="https://museumhokudai.github.io/testPosition.json";
+    console.log(fname);
+    const res2={"ary":
+        [{"position":{"lat":43.065866, "lng":141.362682}},
+         {"position":{"lat":43.062961, "lng":141.353696}},		
+         {"position":{"lat":43.064740, "lng":141.346918}}
+        ]
+               };
+    const res3={"ary":
+        [
+            {"position":{"lat":43.07279381676491, "lng":141.34222381221747 }},
+            {"position":{"lat":43.068632, "lng":141.350516 }},
+            {"position":{"lat":43.065866, "lng":141.362682}},
+            {"position":{"lat":43.062961, "lng":141.353696}},
+            {"position":{"lat":43.064740, "lng":141.346918}}
+        ]
+               };
+    try {
+        const res=await fetch(fname);
+        if (res.ok) {
+            // Request needed libraries.
+            const [{ AdvancedMarkerElement }] = await Promise.all([
+                google.maps.importLibrary('marker'),
+                google.maps.importLibrary('maps'),
+            ]);
+
+            for (let i = 0; res.ary.length > i; ++i) {
+                console.log(res.ary[i]);
+                mapElement.append(new AdvancedMarkerElement(res.ary[i]));
+            }
+        } else {
+            console.log("not ok");
+        }
+    } catch (error) { 
+        console.error(error.message);
+    }
 
 //    readFile("test-file.txt");
 
+    /*
     const marker = new AdvancedMarkerElement({
         position: { lat: 43.07279381676491, lng: 141.34222381221747 },
     });
@@ -36,6 +68,7 @@ async function init() {
         console.log(posTbl[i]);
         mapElement.append(new AdvancedMarkerElement(posTbl[i]));
     }
+    */
 }
 
 void init();
