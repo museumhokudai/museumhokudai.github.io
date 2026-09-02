@@ -22,7 +22,7 @@ async function init() {
                 console.log(resjson.ary[i]);
                 mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
-            mapElement.zoom=0;
+            mapElement.zoom=8;
         } else {
             console.log("not ok");
         }
