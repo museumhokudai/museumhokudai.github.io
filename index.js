@@ -27,7 +27,7 @@ async function init() {
 
             console.log(res);
 
-            resjson=await res.json();
+            const resjson=await res.json();
             console.log(resjson.ary);
             for (let i = 0; resjson.ary.length > i; ++i) {
                 console.log(resjson.ary[i]);
