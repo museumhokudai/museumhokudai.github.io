@@ -7,31 +7,20 @@
 
 const mapElement = document.querySelector('gmp-map');
 
-//async function readFile(inFile) {
-//};
-
 async function init() {
     const fname="https://museumhokudai.github.io/testPosition.json";
-    console.log(fname);
     try {
         const res=await fetch(fname);
         if (res.ok) {
-            // Request needed libraries.
-            /*
             const [{ AdvancedMarkerElement }] = await Promise.all([
                 google.maps.importLibrary('marker'),
                 google.maps.importLibrary('maps'),
             ]);
-            */
-
-
-            console.log(res);
-
             const resjson=await res.json();
             console.log(resjson.ary);
             for (let i = 0; resjson.ary.length > i; ++i) {
                 console.log(resjson.ary[i]);
-//                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
+                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
         } else {
             console.log("not ok");
@@ -39,8 +28,6 @@ async function init() {
     } catch (error) { 
         console.error(error.message);
     }
-
-//    readFile("test-file.txt");
 
     /*
     const marker = new AdvancedMarkerElement({
