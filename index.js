@@ -23,10 +23,12 @@ async function init() {
             ]);
 
             console.log(res.ary);
+            /*
             for (let i = 0; res.ary.length > i; ++i) {
                 console.log(res.ary[i]);
                 mapElement.append(new AdvancedMarkerElement(res.ary[i]));
             }
+            */
         } else {
             console.log("not ok");
         }
