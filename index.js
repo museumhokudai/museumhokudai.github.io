@@ -22,7 +22,7 @@ async function init() {
                 google.maps.importLibrary('maps'),
             ]);
 
-            console.log(res.ary;
+            console.log(res.ary);
             for (let i = 0; res.ary.length > i; ++i) {
                 console.log(res.ary[i]);
                 mapElement.append(new AdvancedMarkerElement(res.ary[i]));
