@@ -7,6 +7,28 @@
 
 const mapElement = document.querySelector('gmp-map');
 
+function getCenter(resjson) {
+    let minLat=-300,maxLat=300;
+    let minLng=-300,maxLng=300;
+    for (let i = 0; resjson.ary.length > i; ++i) {
+        if (minLat>resjson.ary[i].lat) {
+            minLat=resjson.ary[i].lat;
+        }
+        if (maxLat<resjson.ary[i].lat) {
+            maxLat=resjson.ary[i].lat;
+        }
+        if (minLng>resjson.ary[i].lng) {
+            minLng=resjson.ary[i].lng;
+        }
+        if (maxLng<resjson.ary[i].lng) {
+            maxLng=resjson.ary[i].lng;
+        }
+    }
+    let lat = (maxLat-minLat)/2;
+    let lng = (maxLng-minLng)/2;
+    return lat,lng;
+}
+
 async function init() {
     const fname="https://museumhokudai.github.io/testPosition.json";
     try {
@@ -17,6 +39,7 @@ async function init() {
                 google.maps.importLibrary('maps'),
             ]);
             const resjson=await res.json();
+            let cLat,cLng=getCenter(resjson);
             console.log(resjson.ary);
             for (let i = 0; resjson.ary.length > i; ++i) {
                 console.log(resjson.ary[i]);
@@ -24,7 +47,7 @@ async function init() {
             }
             mapElement.zoom=8;
             mapElement.innerMap.setOptions({
-                center:{lat:0,lng:0}
+                center:{lat:cLat,lng:cLng}
             });
             console.log(mapElement.center);
             console.log(mapElement.center.lat);
