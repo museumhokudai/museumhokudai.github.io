@@ -26,8 +26,8 @@ function getCenter(resjson) {
             maxLng=resjson.ary[i].position.lng;
         }
     }
-    let lat = (maxLat-minLat)/2;
-    let lng = (maxLng-minLng)/2;
+    let lat = minLat+(maxLat-minLat)/2;
+    let lng = minLng+(maxLng-minLng)/2;
     return [lat,lng];
 }
 
