@@ -13,15 +13,15 @@ function getCenter(resjson) {
     for (let i = 0; resjson.ary.length > i; ++i) {
         console.log(typeof resjson.ary[i].position.lat);
         console.log(typeof resjson.ary[i].position.lng);
-        if (minLat>resjson.ary[i].lat) {
-            minLat=resjson.ary[i].lat;
-        } else if (maxLat<resjson.ary[i].lat) {
-            maxLat=resjson.ary[i].lat;
+        if (minLat>resjson.ary[i].position.lat) {
+            minLat=resjson.ary[i].position.lat;
+        } else if (maxLat<resjson.ary[i].position.lat) {
+            maxLat=resjson.ary[i].position.lat;
         }
-        if (minLng>resjson.ary[i].lng) {
-            minLng=resjson.ary[i].lng;
-        } else if (maxLng<resjson.ary[i].lng) {
-            maxLng=resjson.ary[i].lng;
+        if (minLng>resjson.ary[i].position.lng) {
+            minLng=resjson.ary[i].position.lng;
+        } else if (maxLng<resjson.ary[i].position.lng) {
+            maxLng=resjson.ary[i].position.lng;
         }
     }
     let lat = (maxLat-minLat)/2;
