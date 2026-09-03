@@ -11,8 +11,8 @@ function getCenter(resjson) {
     let minLat=-300,maxLat=300;
     let minLng=-300,maxLng=300;
     for (let i = 0; resjson.ary.length > i; ++i) {
-        console.log(typeof resjson.ary[i].lat);
-        console.log(typeof resjson.ary[i].lng);
+        console.log(typeof resjson.ary[i].position.lat);
+        console.log(typeof resjson.ary[i].position.lng);
         if (minLat>resjson.ary[i].lat) {
             minLat=resjson.ary[i].lat;
         } else if (maxLat<resjson.ary[i].lat) {
