@@ -24,7 +24,7 @@ async function init() {
             }
             mapElement.zoom=8;
             mapElement.innerMap.setOptions({
-                center:{lat:0,lgn:0}
+                center:{lat:0,lng:0}
             });
             console.log(mapElement.center);
             console.log(mapElement.center.lat);
