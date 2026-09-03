@@ -38,7 +38,8 @@ async function init() {
             ]);
             const resjson=await res.json();
             let cLat,cLng=getCenter(resjson);
-            console.log(cLat,cLng);
+            console.log(cLat);
+            console.log(cLng);
             for (let i = 0; resjson.ary.length > i; ++i) {
                 console.log(resjson.ary[i]);
                 mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
