@@ -23,7 +23,9 @@ async function init() {
                 mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
             mapElement.zoom=8;
-            mapElement.setCenter(new google.maps.LatLng(0,0));
+            console.log(mapElement.center);
+            console.log(mapElement.center.lat);
+            console.log(mapElement.center.lng);
             /*
             mapElement.center.lat=0;
             mapElement.center.lng=0;
