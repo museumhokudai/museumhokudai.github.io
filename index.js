@@ -11,8 +11,6 @@ function getCenter(resjson) {
     let minLat=300,maxLat=-300;
     let minLng=300,maxLng=-300;
     for (let i = 0; resjson.ary.length > i; ++i) {
-        console.log(resjson.ary[i].position.lat);
-        console.log(resjson.ary[i].position.lng);
         if (minLat>resjson.ary[i].position.lat) {
             minLat=resjson.ary[i].position.lat;
         }
@@ -42,23 +40,12 @@ async function init() {
             ]);
             const resjson=await res.json();
             let [cLat,cLng]=getCenter(resjson);
-            console.log(cLat);
-            console.log(cLng);
             for (let i = 0; resjson.ary.length > i; ++i) {
-                console.log(resjson.ary[i]);
                 mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
             }
-            mapElement.zoom=8;
             mapElement.innerMap.setOptions({
                 center:{lat:cLat,lng:cLng}
             });
-            console.log(mapElement.center);
-            console.log(mapElement.center.lat);
-            console.log(mapElement.center.lng);
-            /*
-            mapElement.center.lat=0;
-            mapElement.center.lng=0;
-            */
         } else {
             console.log("not ok");
         }
