@@ -8,19 +8,21 @@
 const mapElement = document.querySelector('gmp-map');
 
 function getCenter(resjson) {
-    let minLat=-300,maxLat=300;
-    let minLng=-300,maxLng=300;
+    let minLat=300,maxLat=-300;
+    let minLng=300,maxLng=-300;
     for (let i = 0; resjson.ary.length > i; ++i) {
-        console.log(typeof resjson.ary[i].position.lat);
-        console.log(typeof resjson.ary[i].position.lng);
+        console.log(resjson.ary[i].position.lat);
+        console.log(resjson.ary[i].position.lng);
         if (minLat>resjson.ary[i].position.lat) {
             minLat=resjson.ary[i].position.lat;
-        } else if (maxLat<resjson.ary[i].position.lat) {
+        }
+        if (maxLat<resjson.ary[i].position.lat) {
             maxLat=resjson.ary[i].position.lat;
         }
         if (minLng>resjson.ary[i].position.lng) {
             minLng=resjson.ary[i].position.lng;
-        } else if (maxLng<resjson.ary[i].position.lng) {
+        }
+        if (maxLng<resjson.ary[i].position.lng) {
             maxLng=resjson.ary[i].position.lng;
         }
     }
