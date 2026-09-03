@@ -24,7 +24,7 @@ function getCenter(resjson) {
     }
     let lat = (maxLat-minLat)/2;
     let lng = (maxLng-minLng)/2;
-    return lat,lng;
+    return [lat,lng];
 }
 
 async function init() {
@@ -37,7 +37,7 @@ async function init() {
                 google.maps.importLibrary('maps'),
             ]);
             const resjson=await res.json();
-            let cLat,cLng=getCenter(resjson);
+            let [cLat,cLng]=getCenter(resjson);
             console.log(cLat);
             console.log(cLng);
             for (let i = 0; resjson.ary.length > i; ++i) {
