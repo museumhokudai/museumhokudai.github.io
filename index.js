@@ -35,15 +35,15 @@ function getCenter2(resjson) {
     [x,y]=getCenter(resjson);
     len =99999999999999;
     for (let i = 0; resjson.ary.length > i; ++i) {
-        let dx = x-json.ary[i].position.lat;
-        let dy = y=json.ary[i].position.lng;
+        let dx = x-resjson.ary[i].position.lat;
+        let dy = y=resjson.ary[i].position.lng;
         let l = Math.sqrt((dx*dx)+(dy*dy));
         if (len > l) {
             idx=i;
             len = l;
         }
     }
-    return [json.ary[idx].position.lat,json.ary[idx].position.lng];
+    return [resjson.ary[idx].position.lat,resjson.ary[idx].position.lng];
 }
 
 
