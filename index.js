@@ -29,6 +29,23 @@ function getCenter(resjson) {
     return [lat,lng];
 }
 
+// 中心座標を求めて、そこから一番近いポイントをセンターに置く
+function getCenter2(resjson) {
+    [x,y]=getCenter(resjson);
+    len =99999999999999;
+    for (let i = 0; resjson.ary.length > i; ++i) {
+        dx = x-json.ary[i].position.lat;
+        dy = y=json.ary[i].position.lng;
+        l = Math.sqrt((dx*dx)+(dy*dy));
+        if (len > l) {
+            idx=i;
+            len = l;
+        }
+    }
+    return [json.ary[idx].position.lat,json.ary[idx].position.lng];
+}
+
+
 async function init() {
     // URLのパラメータから 'file' の値を取得
     const urlParams = new URLSearchParams(window.location.search);
@@ -42,7 +59,7 @@ async function init() {
                     google.maps.importLibrary('maps'),
             ]);
                 const resjson=await res.json();
-                let [cLat,cLng]=getCenter(resjson);
+                let [cLat,cLng]=getCenter2(resjson);
                 for (let i = 0; resjson.ary.length > i; ++i) {
                     mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
                 }
