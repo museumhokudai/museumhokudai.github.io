@@ -5,9 +5,16 @@
         <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
     <body>
-
-        <input name="myfile" type="url" value="https://museumhokudai.github.io/testPosition.json"/>
-
+        <form id="sendUrl">
+            <input name="myfile" type="url" value="https://museumhokudai.github.io/testPosition.json"/>
+        </form>
         <a href="showmap.html">マップ表示</a>
+        <script>
+               document.getElementById('sendUrl').addEventListener('submit', function(e) {
+	                   e.preventDefault();
+                   const fileUrl = document.getElementById('myFile').value;
+                   // エンコードして次のページへ遷移
+                   window.location.href = `dest.html?file=${encodeURIComponent(fileUrl)}`;
+               });
     </body>
 </html>
