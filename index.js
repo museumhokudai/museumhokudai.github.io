@@ -7,13 +7,53 @@
 
 const mapElement = document.querySelector('gmp-map');
 
-async function init() {
-    // Request needed libraries.
-    const [{ AdvancedMarkerElement }] = await Promise.all([
-        google.maps.importLibrary('marker'),
-        google.maps.importLibrary('maps'),
-    ]);
+function getCenter(resjson) {
+    let minLat=300,maxLat=-300;
+    let minLng=300,maxLng=-300;
+    for (let i = 0; resjson.ary.length > i; ++i) {
+        if (minLat>resjson.ary[i].position.lat) {
+            minLat=resjson.ary[i].position.lat;
+        }
+        if (maxLat<resjson.ary[i].position.lat) {
+            maxLat=resjson.ary[i].position.lat;
+        }
+        if (minLng>resjson.ary[i].position.lng) {
+            minLng=resjson.ary[i].position.lng;
+        }
+        if (maxLng<resjson.ary[i].position.lng) {
+            maxLng=resjson.ary[i].position.lng;
+        }
+    }
+    let lat = minLat+(maxLat-minLat)/2;
+    let lng = minLng+(maxLng-minLng)/2;
+    return [lat,lng];
+}
 
+async function init() {
+    const fname="https://museumhokudai.github.io/testPosition.json";
+    try {
+        const res=await fetch(fname);
+        if (res.ok) {
+            const [{ AdvancedMarkerElement }] = await Promise.all([
+                google.maps.importLibrary('marker'),
+                google.maps.importLibrary('maps'),
+            ]);
+            const resjson=await res.json();
+            let [cLat,cLng]=getCenter(resjson);
+            for (let i = 0; resjson.ary.length > i; ++i) {
+                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
+            }
+            mapElement.innerMap.setOptions({
+                center:{lat:cLat,lng:cLng}
+            });
+        } else {
+            console.log("not ok");
+        }
+    } catch (error) { 
+        console.error(error.message);
+    }
+
+    /*
     const marker = new AdvancedMarkerElement({
         position: { lat: 43.07279381676491, lng: 141.34222381221747 },
     });
@@ -31,6 +71,7 @@ async function init() {
         console.log(posTbl[i]);
         mapElement.append(new AdvancedMarkerElement(posTbl[i]));
     }
+    */
 }
 
 void init();
