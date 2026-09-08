@@ -38,8 +38,6 @@ function getCenter2(resjson) {
         let dx = x-resjson.ary[i].position.lat;
         let dy = y-resjson.ary[i].position.lng;
         let l = Math.sqrt((dx*dx)+(dy*dy));
-        console.error(len);
-        console.error(l);
         if (len > l) {
             idx=i;
             len = l;
