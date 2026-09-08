@@ -31,7 +31,7 @@ function getCenter(resjson) {
 
 // 中心座標を求めて、そこから一番近いポイントをセンターに置く
 function getCenter2(resjson) {
-    let x,y,len;
+    let x,y,len,idx=0;
     [x,y]=getCenter(resjson);
     len =99999999999999;
     for (let i = 0; resjson.ary.length > i; ++i) {
