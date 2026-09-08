@@ -30,48 +30,34 @@ function getCenter(resjson) {
 }
 
 async function init() {
-    const fname="https://museumhokudai.github.io/testPosition.json";
-    try {
-        const res=await fetch(fname);
-        if (res.ok) {
-            const [{ AdvancedMarkerElement }] = await Promise.all([
-                google.maps.importLibrary('marker'),
-                google.maps.importLibrary('maps'),
+    // URLのパラメータから 'file' の値を取得
+    const urlParams = new URLSearchParams(window.location.search);
+    const fname = urlParams.get('file');
+    if (fname) {
+        try {
+            const res=await fetch(fname);
+            if (res.ok) {
+                const [{ AdvancedMarkerElement }] = await Promise.all([
+                    google.maps.importLibrary('marker'),
+                    google.maps.importLibrary('maps'),
             ]);
-            const resjson=await res.json();
-            let [cLat,cLng]=getCenter(resjson);
-            for (let i = 0; resjson.ary.length > i; ++i) {
-                mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
+                const resjson=await res.json();
+                let [cLat,cLng]=getCenter(resjson);
+                for (let i = 0; resjson.ary.length > i; ++i) {
+                    mapElement.append(new AdvancedMarkerElement(resjson.ary[i]));
+                }
+                mapElement.innerMap.setOptions({
+                    center:{lat:cLat,lng:cLng}
+                });
+            } else {
+                console.log("not ok");
             }
-            mapElement.innerMap.setOptions({
-                center:{lat:cLat,lng:cLng}
-            });
-        } else {
-            console.log("not ok");
+        } catch (error) { 
+            console.error(error.message);
         }
-    } catch (error) { 
-        console.error(error.message);
+    } else {
+        console.error("no file");
     }
-
-    /*
-    const marker = new AdvancedMarkerElement({
-        position: { lat: 43.07279381676491, lng: 141.34222381221747 },
-    });
-    const marker2 = new AdvancedMarkerElement({
-        position: { lat: 43.068632, lng: 141.350516 },
-    });
-    mapElement.append(marker2);
-    mapElement.append(marker);
-
-    const posTbl = [{position:{lat:43.065866, lng:141.362682},},
-                    {position:{lat:43.062961, lng:141.353696},},
-                    {position:{lat:43.064740, lng:141.346918},},
-                    ];
-    for (let i = 0; posTbl.length > i; ++i) {
-        console.log(posTbl[i]);
-        mapElement.append(new AdvancedMarkerElement(posTbl[i]));
-    }
-    */
 }
 
 void init();
