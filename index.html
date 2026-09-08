@@ -7,7 +7,7 @@
     <body>
         <form id="sendUrl">
 			<p>
-				<input name="myfile" type="url" id="myFile" size="40" value="https://museumhokudai.github.io/testPosition.json"/>
+				<input name="filename" type="url" id="myFile" size="40" value="https://museumhokudai.github.io/testPosition.json"/>
 			</p>
 			<p class="button">
 				<button type="submit">マップ表示</button> 
@@ -17,8 +17,10 @@
                document.getElementById('sendUrl').addEventListener('submit', function(e) {
 	                   e.preventDefault();
                    const fileUrl = document.getElementById('myFile').value;
+				   console.error(fileUrl);
+				   console.error(`showmap.html?file=${encodeURIComponent(fileUrl)}`);
                    // エンコードして次のページへ遷移
-                   window.location.href = `showmap.html?file=${encodeURIComponent(fileUrl)}`;
+//                   window.location.href = `showmap.html?file=${encodeURIComponent(fileUrl)}`;
                });
     </body>
 </html>
